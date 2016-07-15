@@ -11,3 +11,8 @@ QuantumMethods.java ~ All methods which can be used to create simulations
   4. calculateVelocity ~ Will calculate the velocity of the object given the inputs
   5. predictChance ~ given an array of previous answers, and the prime answer choice, this method will tell you the % chance of getting the prime value
   
+###Propogation
+  For the propogation method, defining the variables in Java is a pain, so I have uploaded a program that defines all the variables and
+sets the x_grid size from -10 to 15.6 (That way the propogation occurs from 0~128, a power of 2)
+
+The file for use of defining is called: TestingWaves.java
