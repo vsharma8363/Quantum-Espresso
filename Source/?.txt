@@ -1,0 +1,1 @@
+This folder has all the java files I coded and used to create the jar, transfer these to your project if you want to use any method of this application
