@@ -28,13 +28,14 @@ public class TestingWaves {
 		}
 	}
 	
+
 	public static void define()
 	  {
 		  delta_t = 0.05;
 		  delta_x = 0.2;
 		  quanta_1 = 0;
 		  omega = 1;
-		  Normalization = (Math.pow((omega/Math.PI), 1/4))/(Math.sqrt((Math.pow(2, quanta_1))*(factorial((int)quanta_1)))); 
+		  Normalization = (Math.pow((omega/Math.PI), 0.25))/(Math.sqrt((Math.pow(2, quanta_1))*(factorial((int)quanta_1)))); 
 		 
 		  x_grid = new double[128];
 		  for(double x = -10; x < 15.6; x+=0.2)
@@ -59,14 +60,15 @@ public class TestingWaves {
 		  
 		  initial_wavepacket = new Complex[x_grid.length];
 		  
+		  //double alpha
+		  
 		  for(int x = 0; x < x_grid.length; x++)
 		  {
 			  double newXGRID = Math.pow((x_grid[x] + 5), 2);
 			  Complex w = new Complex(Math.cos(x_grid[x]), Math.sin(x_grid[x]));
-			  double alpha = (Normalization * (Math.exp((-1/4) * newXGRID)));
+			  double alpha = (Normalization * (Math.exp((-0.25) * newXGRID)));
 			  initial_wavepacket[x] = w.times(alpha);
 		  }
-		  
 		  
 	  }
 	
