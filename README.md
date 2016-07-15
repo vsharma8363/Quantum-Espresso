@@ -15,6 +15,14 @@ QuantumMethods.java ~ All methods which can be used to create simulations
   For the propogation method, defining the variables in Java is a pain, so I have uploaded a program that defines all the variables and
 sets the x_grid size from -10 to 15.6 (That way the propogation occurs from 0~128, a power of 2)
 
-The file for use of testing and printing the variables is called: TestingWaves.java
-The file I called to define and store multiple variables is called: InitialWaveStorage.java
+The file for use of testing and printing the variables is called: 
+###TestingWaves.java
+
+The file I called to define and store multiple variables is called: 
+###InitialWaveStorage.java
   This file saves all aspects of the initial wave in a seperate file to make your overall program a more clean package
+
+
+##Key Points:
+I have also made a program that graphs the first two wavepackets by plugging the new packet as the initial and re-running the method.
+this file is called: ###GraphMain.java
