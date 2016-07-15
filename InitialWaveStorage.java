@@ -1,5 +1,5 @@
 
-public class WaveStorage {
+public class InitialWaveStorage {
 
 	  public static double quanta_1;
 	  public static double omega;
