@@ -193,6 +193,160 @@ public class QuantumMethods {
 	}
 	  	
 	
+		public static Complex[][] propogator2d(double x_grid_size, double y_grid_size, double delta_x, double delta_y, double delta_t, double [][] V, Complex[][] psi_t)
+	{
+		double delta_k_x = (2 * Math.PI)/(x_grid_size*delta_x);
+		double delta_k_y = (2 * Math.PI)/(x_grid_size*delta_y);
+		
+		double s = -Math.PI/delta_x;
+		double e = Math.PI/delta_x;
+		double a = delta_k_x;
+		
+		double[] kx_grid = new double[(int) x_grid_size];
+		int w = 0;
+		
+		for(double i = s; i < e; i+=a)
+		{
+			kx_grid[w] = i;
+			w+=1;
+			if(w == 128)
+				break;
+		}
+		
+		s = -Math.PI/delta_y;
+		e = Math.PI/delta_y;
+		a = delta_k_y;
+		
+		double[] ky_grid = new double[(int) y_grid_size];
+		w = 0;
+		
+		for(double i = s; i < e; i+=a)
+		{
+			ky_grid[w] = i;
+			w+=1;
+			if(w == 128)
+				break;
+		}
+		
+		double[][] kx_grid_2d = new double[ky_grid.length][kx_grid.length];
+		
+		
+		for(int eg = 0; eg < ky_grid.length; eg++)
+		{
+			int j = 0;
+			for(int i = 0; i < kx_grid.length; i++)
+			{
+				System.out.println(j);
+				kx_grid_2d[j][eg] = kx_grid[i];
+				j++;
+			}
+		}
+	
+		double[][] ky_grid_2d = new double[ky_grid.length][kx_grid.length];
+		
+		for(int i = 0; i < ky_grid_2d.length; i++)
+		{
+			ky_grid_2d[i] = ky_grid;
+		}
+		
+		double [][] K = new double[kx_grid_2d.length][ky_grid_2d.length];
+		for(int x = 0; x < kx_grid_2d.length; x++)
+		{
+			for(int i = 0; i < kx_grid_2d.length; i++)
+			{
+				K[i][x] = Math.pow((kx_grid_2d[i][x]), 2)/2;
+			}
+		}
+		
+		//double [][] vK = new double[kx_grid_2d.length][ky_grid_2d.length];
+		for(int x = 0; x < ky_grid_2d.length; x++)
+		{
+			for(int i = 0; i < ky_grid_2d.length; i++)
+			{
+				K[i][x] += Math.pow((ky_grid_2d[i][x]), 2)/2;
+			}
+		}
+		
+		Complex [][] expK = new Complex[(int) x_grid_size][(int) y_grid_size];
+		
+		for(int x = 0; x < x_grid_size; x++)
+		{
+			for(int i = 0; i < expK.length; i++)
+			{
+				expK[x][i] = new Complex(Math.cos(K[x][i] * delta_t), Math.sin(K[x][i] * delta_t));
+			}
+		}
+		
+		Complex [][] expV = new Complex[(int) x_grid_size][(int) y_grid_size];
+		
+		for(int x = 0; x < x_grid_size; x++)
+		{
+			for(int i = 0; i < expK.length; i++)
+			{
+				expV[x][i] = new Complex(Math.cos(V[x][i] * delta_t/2), Math.sin(V[x][i] * delta_t/2));
+			}
+		}
+		
+		double [][] bulb = new double[(int)x_grid_size][(int)y_grid_size];
+		
+		for(int i = 0; i < x_grid_size; i++)
+		{
+			for(int x = 0; x < y_grid_size; x++)
+			{
+				bulb[i][x] = Math.pow(-1, i+x);
+			}
+		}
+		
+	/*
+	 * HERE IS THE STOPPING POINT wHERE SOMEONE NEEDS TO FIND FFT2 ARRAY PROGRAMS BRUH
+	 * psi_t = new double[][];
+	 */
+		psi_t = new Complex[(int) y_grid_size][(int) x_grid_size];
+		
+		for(int i = 0; i < y_grid_size; i++)
+		{
+			//rows ~ done
+			psi_t[i] = FFT.fft(psi_t[i]);
+		}
+		for(int i = 0; i < x_grid_size; i++)
+		{
+			//columns
+			psi_t[i] = FFT.fft(psi_t[i]);
+		}
+		
+		for(int i = 0; i < y_grid_size; i++)
+		{
+			for(int w1 = 0; w1 < x_grid_size; w1++)
+			{
+				Complex ax = expK[i][w];
+				Complex bx = psi_t[i][w];
+				psi_t[i][w1] = ax.times(bx);
+			}
+		}
+		
+		for(int i = 0; i < y_grid_size; i++)
+		{
+			//rows ~ done
+			psi_t[i] = FFT.ifft(psi_t[i]);
+		}
+		for(int i = 0; i < x_grid_size; i++)
+		{
+			//columns
+			psi_t[i] = FFT.ifft(psi_t[i]);
+		}
+		
+		for(int i = 0; i < y_grid_size; i++)
+		{
+			for(int w1 = 0; w1 < x_grid_size; w1++)
+			{
+				Complex ax = expV[i][w];
+				Complex bx = psi_t[i][w];
+				psi_t[i][w1] = ax.times(bx);
+			}
+		}
+		
+		return psi_t;
+	}
 	
 	
 	
