@@ -1,4 +1,7 @@
 # Quantum-Espresso
+##Author: Vikram Sharma
+###Credits go to Princeton U and Penn State for the Fast Fourier Transform and Complex number libraries
+
 A library to model Quantum simulations in Java WITH DOCUMENTATION
 
 What is Quantum Physics (src: Wikipedia):
