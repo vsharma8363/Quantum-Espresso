@@ -1,4 +1,6 @@
-# Quantum-Espresso
+![Alt text](/icon.jpg?raw=true "Quantum-Espresso")
+ 
+#Quantum-Espresso
 ##Author: Vikram Sharma
 ###Credits go to Princeton U and Penn State for the Fast Fourier Transform and Complex number libraries
 
