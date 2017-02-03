@@ -1,9 +1,0 @@
-~~~~~~~~~~~Credits File~~~~~~~~~~~~~~~~~~~
-The following files:
-1. FTT.java
-2. Complex.java
-
-Are from the Pinceton CS intro website (link here: http://introcs.cs.princeton.edu/java/97data/)
-These were necessary to allow the use of both Complex numbers and both Inverse and normal Fast Fourier Tranformations
-
-However the Mechanics.java file and all others were created from scratch
