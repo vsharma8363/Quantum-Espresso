@@ -1,9 +1,9 @@
-#Quantum-Espresso
+Quantum-Espresso
 -----------------------
-#Author: Vikram Sharma
-
-###Credits go to Princeton U and Penn State for the Fast Fourier Transform and Complex number libraries
-
+Author: Vikram Sharma
+-----------------------
+Credits go to Princeton U and Penn State for the Fast Fourier Transform and Complex number libraries
+-----------------------
 A library to model Quantum simulations in Java WITH DOCUMENTATION
 
 - The communication libraries inside the comm. folder allows for mass level communication between several machines over the same wireless network, to allow many different computer to compute and crunch data to form the correct simulations --> A method to create simple quantum cloud simulations
